@@ -1,0 +1,16 @@
+<table id="hoverTable" class="hoverTable">
+    <tr class="text table-header-tr" id="header-row">
+        <th width="50%">Song name</th>
+        <th width="25%">Artist</th>
+        <th width="20%">Album</th>
+        <th width="5%">Length</th>
+    </tr>
+    {% for song in all_songs %}
+    <tr id="{{song.id}}" class="{% if forloop.counter|divisibleby:2 %}evenrow{% else %}oddrow{% endif%} track-info text">
+        <td id="{{song.id}}" class="track-info" width="50%">{{song.name}}</td>
+        <td id="{{song.id}}" class="track-info" width="25%">{{song.artist.name}}</td>
+        <td id="{{song.id}}" class="track-info" width="20%">{{song.album.name}}</td>
+        <td id="{{song.id}}" class="track-info" width="5%">{{song.track_length}}</td>
+    </tr>
+    {% endfor %}
+</table>

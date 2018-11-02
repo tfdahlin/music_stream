@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>Login</title>
+        <style>
+            body {
+                background-color: #111111;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+        <div style="color: #ffffff;">Please login.</div>
+        {% if messages %}{% for message in messages %}
+            <div style="color: red; width: 500px; align: justified;">{{ message }}</div>
+        {% endfor %}{% endif %}
+        {% if messages %}
+            <div style="color: #ffffff; width: 500px; align: justified;">If your credentials do not work, it's possible there was a database wipe, 
+                                         and you will need to re-create your account. This may happen from time to 
+                                         time while the server is being built. Sorry for the inconvenience!
+            </div>
+        {% endif %}
+        <div>
+            <form method="post"> {% csrf_token %}
+                <input type="text" placeholder="Username" name="username" autocomplete="username" required><br>
+                <input type="password" placeholder="Password" name="password" autocomplete="current-password" required><br>
+                <input type="submit" value="Login"><br>
+                <a href='register' style="color: #ffffff;">Create an account</a>
+            </form>
+        </div>
+        </center>
+    </body>
+
+</html>

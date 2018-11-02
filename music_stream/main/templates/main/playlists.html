@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Manage playlists</title>
+        <style>
+            body {
+                background-color: #111111;
+            }
+            a.link {
+                color: #ffffff;
+            }
+            .checkbox {
+                color: #ffffff;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post"> {% csrf_token %}
+            {% for playlist in playlists %}
+                <div class="checkbox" >
+                    {{playlist.name}}<input name="{{playlist.id}}" type="checkbox" {% if playlist.public %}checked{% endif %}>Public?</input>
+                </div>
+            {% endfor %}
+            <input type="submit" value="Update"></input>
+        </form>
+        <div>
+            <a href="/" class="link">Return to the homepage</a>
+        </div>
+    </body>
+</html>
