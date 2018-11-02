@@ -4,10 +4,10 @@ A Django web application for dynamically serving music. Originally designed so t
 
 ## Dependencies
 ### Mandatory dependencies
-Python3 (https://www.python.org/)
-Pillow (https://pillow.readthedocs.io/en/5.3.x/)
-eyeD3 (https://eyed3.readthedocs.io/en/latest/)
-mutagen (https://mutagen.readthedocs.io/en/latest/)
+Python3 (https://www.python.org/)</br>
+Pillow (https://pillow.readthedocs.io/en/5.3.x/)</br>
+eyeD3 (https://eyed3.readthedocs.io/en/latest/)</br>
+mutagen (https://mutagen.readthedocs.io/en/latest/)</br>
 
 ### Optional dependencies
 wakeonlan (https://pypi.org/project/wakeonlan/)
