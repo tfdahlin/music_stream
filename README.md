@@ -9,10 +9,13 @@ If for some reason you decide to clone this repo for something, you'll need to g
 1. Python3 (https://www.python.org/)
 
    Written for Python3
-2. eyeD3 (https://eyed3.readthedocs.io/en/latest/)
+2. Django (https://www.djangoproject.com/)
+
+   Web framework that does all the heavy lifting
+3. eyeD3 (https://eyed3.readthedocs.io/en/latest/)
 
    MP3 file processing, might be able to remove one or the other
-3. mutagen (https://mutagen.readthedocs.io/en/latest/)
+4. mutagen (https://mutagen.readthedocs.io/en/latest/)
 
    MP3 file processing, might be able to remove one or the other
 
