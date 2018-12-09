@@ -33,7 +33,7 @@ if (document.addEventListener) { // IE >= 9; other browsers
             document.getElementById("rmenu").className = "show";  
             document.getElementById("rmenu").style.top =  mouseY(e) + 'px';
             document.getElementById("rmenu").style.left = mouseX(e) + 'px';
-            song_id = e.target.id;
+            rc_song_id = e.target.id;
             $(document).bind("click", function(event) {
                 document.getElementById("rmenu").className = "hide";
                 $(document).unbind("click", function(event) {

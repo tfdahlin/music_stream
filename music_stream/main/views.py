@@ -58,11 +58,13 @@ def index(request):
         playlist_id = request.GET.get('playlist_id')
         if playlist_id == None:
             songs = Song.objects.filter().order_by('artist__name', 'album__name', 'name')
-            song_count = songs.count
+            song_count = songs.count()
+            print("All songs. Song count: " + str(song_count))
             is_all_songs = True
         else:
             songs = Song.objects.filter(playlists__id=playlist_id)
-            song_count = songs.count
+            song_count = songs.count()
+            print("Song count: " + str(song_count))
             is_all_songs = False
             if(songs.count() == 0):
                 print("No songs found in playlist.")
@@ -133,7 +135,7 @@ def remember_volume(request):
 @login_required
 def refresh(request):
     if(not get_last_refresh_time()):
-        print("It has not been at least one hour since last refresh.")
+        #print("It has not been at least one hour since last refresh.")
         return index(request)
     if(request.user.can_control == True):
         base_folder = settings.MUSIC_FOLDER
@@ -181,7 +183,7 @@ def add_song(base_folder, file):
         song_instance = Song.objects.get(filepath=str(filename[18:]))
         return
     except:
-        print(filename)
+        print(filename + " not in database.")
         if(filename.endswith('.mp3')):
             # load the audio file to update the database
             try:
@@ -189,6 +191,7 @@ def add_song(base_folder, file):
             except:
                 print("Could not open file: ",end="")
                 print(filename)
+            else:
                 if(audiofile == None):
                     print("Could not open file: ",end="")
                     print(filename)
@@ -434,13 +437,16 @@ def fetch_track_info(request):
 def add_to_playlist(request):
     try:
         if(request.method!="GET"):
+            print("Method is not GET.")
             return redirect('main:index')
         
         playlist_id = request.GET.get('playlist_id')
         songid = request.GET.get('songid')
-        if((not songid.isdigit()) or (not playlist_id.isdigit())): # avoid SQL injection
-            return redirect('main:index')
         
+        if((not songid.isdigit()) or (not playlist_id.isdigit())): # avoid SQL injection
+            print("Songid or playlist id is not a digit.")
+            return redirect('main:index')
+        print("Trying to add song " + str(songid) + " to playlist " + str(playlist_id))
         playlist_exists = Playlist.objects.filter(id=playlist_id).exists()
         song_exists = Song.objects.filter(id=songid).exists()
         
@@ -566,6 +572,10 @@ def get_random_song(request):
             return JsonResponse(response)
 
     song = songs.order_by('?').first()
+    current_track_id = request.GET.get('current_track')
+    if (songs.count() > 1) and (current_track_id != None):
+        if str(song.id) == current_track_id:
+            return get_random_song(request)
     response['src'] = "get_song?songid=" + str(song.id)
     response['title'] = song.name
     if((song.artist != None) and (song.artist.name != None)):
@@ -631,7 +641,7 @@ def get_last_restart_time():
     if(os.path.isfile(cache_filename)):
         last_modified = os.path.getmtime(cache_filename)
         curr_time = time.time()
-        if(curr_time - last_modified > 3600):
+        if(curr_time - last_modified > 600):
             touch_command = "touch " + cache_filename
             os.system(touch_command)
             return True
@@ -646,7 +656,7 @@ def get_last_refresh_time():
     if(os.path.isfile(cache_filename)):
         last_modified = os.path.getmtime(cache_filename)
         curr_time = time.time()
-        if(curr_time - last_modified > 3600):
+        if(curr_time - last_modified > 60):
             touch_command = "touch " + cache_filename
             os.system(touch_command)
             return True

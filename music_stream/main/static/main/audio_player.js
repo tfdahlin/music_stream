@@ -335,8 +335,17 @@ $.urlParam = function(name) {
 function load_random_song() {
     var playlist_id = $.urlParam('playlist_id');
     var url_parameters = "";
-    if(playlist_id != null) {
-        url_parameters += "?playlist_id=" + playlist_id;
+    if(deck.length > 1) {
+        url_parameters += "?current_track=";
+        url_parameters += deck[deck_position];
+        if(playlist_id != null) {
+            url_parameters += "&playlist_id=" + playlist_id;
+        }
+    }
+    else {
+        if(playlist_id != null) {
+            url_parameters += "?playlist_id=" + playlist_id;
+        }
     }
     if((deck.length > 1) && (deck_position < deck.length-1)) {
         deck_position += 1;
