@@ -1,4 +1,7 @@
 # music_stream
+## Revamp
+This application has been revamped significantly, so this repository is no longer maintained. The new version will be found at https://github.com/tfdahlin/music_stream_revamp when it is made public.
+
 ## Overview
 A Django web application for dynamically serving music. Originally designed so that I could share my music collection with my family without needing to keep putting it on flash drives for them, it became a bit of a pet project so I could have something to showcase for job applications.
 
