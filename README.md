@@ -1,6 +1,6 @@
 # music_stream
 ## Revamp
-This application has been revamped significantly, so this repository is no longer maintained. The new version will be found at https://github.com/tfdahlin/music_stream_revamp when it is made public.
+This application has been revamped significantly, so this repository is no longer maintained. The new version can be found [here][1].
 
 ## Overview
 A Django web application for dynamically serving music. Originally designed so that I could share my music collection with my family without needing to keep putting it on flash drives for them, it became a bit of a pet project so I could have something to showcase for job applications.
@@ -29,3 +29,5 @@ If for some reason you decide to clone this repo for something, you'll need to g
 2. Pillow (https://pillow.readthedocs.io/en/5.3.x/)
 
    Specific use-case for converting .webp album artwork to .png to serve the file
+
+[1]:https://github.com/tfdahlin/lindele
